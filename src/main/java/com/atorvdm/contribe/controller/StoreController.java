@@ -3,6 +3,8 @@ package com.atorvdm.contribe.controller;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -42,8 +44,7 @@ public class StoreController implements BookList, BaseBasket {
 		} else {
 			Set<Book> bookSet = new HashSet<>();
 			bookMap.keySet().forEach(book -> {
-				if (book.getTitle().contains(searchString) ||
-						book.getAuthor().contains(searchString)) {
+				if (book.search(searchString)) {
 					bookSet.add(book);
 				}
 			});
@@ -78,7 +79,7 @@ public class StoreController implements BookList, BaseBasket {
 	@Override
 	@RequestMapping(method = RequestMethod.POST, path = "/addToBasket")
 	public boolean addToBasket(@RequestBody Book book, @RequestParam(value="quantity", defaultValue="1") int quantity) {
-		if (quantity < 0) return false;
+		if (quantity < 1) return false;
 		if (bookMap.containsKey(book)) {
 			basket.addBook(book, quantity);
 			return true;
@@ -90,7 +91,7 @@ public class StoreController implements BookList, BaseBasket {
 	@Override
 	@RequestMapping(method = RequestMethod.POST, path = "/removeFromBasket")
 	public boolean removeFromBasket(@RequestBody Book book, @RequestParam(value="quantity", defaultValue="1") int quantity) {
-		if (quantity < 0) return false;
+		if (quantity < 1) return false;
 		basket.removeBook(book, quantity);
 		return true;
 	}
@@ -99,18 +100,18 @@ public class StoreController implements BookList, BaseBasket {
 	@RequestMapping(method = RequestMethod.POST, path = "/buyFromBasket")
 	public int[] buyFromBasket() {
 		Set<Map.Entry<Book, Integer>> entrySet = basket.getBooks().entrySet();
-		int[] bookArray = new int[entrySet.size()];
+		List<Integer> bookList = new LinkedList<>();
 	    Iterator<Map.Entry<Book, Integer>> iterator = entrySet.iterator();
 	    
-	    int i = 0;
 	    while(iterator.hasNext()) {
 	        Map.Entry<Book, Integer> mapEntry = (Map.Entry<Book, Integer>) iterator.next();
 	        for (int j = 0; j < mapEntry.getValue(); j++) {
-	        	bookArray[i++] = buyOneBook(mapEntry.getKey());
+	        	bookList.add(buyOneBook(mapEntry.getKey()));
 	        }
 	    }
+	    basket.clear();
 	    
-	    return bookArray;
+	    return bookList.stream().mapToInt(i -> i).toArray();
 	}
 	
 	@Override

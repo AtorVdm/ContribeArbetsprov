@@ -31,6 +31,12 @@ public class Book implements Serializable {
 		this.price = price;
 	}
 	
+	public boolean search(String searchString) {
+		String searchStringLC = searchString.toLowerCase();
+		return title.toLowerCase().contains(searchStringLC) ||
+				author.toLowerCase().contains(searchStringLC);
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null || !(obj instanceof Book)) return false;

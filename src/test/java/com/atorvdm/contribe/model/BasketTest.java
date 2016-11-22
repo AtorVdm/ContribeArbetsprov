@@ -8,6 +8,8 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.atorvdm.contribe.TestUtils;
+
 public class BasketTest {
 	private static final String TEST_TITLE = "Test Title";
 	private static final String TEST_AUTHOR = "Test Author";
@@ -18,28 +20,22 @@ public class BasketTest {
 	@Before
 	public void setUp() throws Exception {
 		basket = new Basket();
-		book1 = new Book();
-		book2 = new Book();
-		
-		book1.setAuthor(TEST_AUTHOR + 1);
-		book2.setAuthor(TEST_AUTHOR + 2);
-		book1.setTitle(TEST_TITLE + 1);
-		book2.setTitle(TEST_TITLE + 2);
-		book1.setPrice(new BigDecimal(1));
-		book2.setPrice(new BigDecimal(2));
+		book1 = TestUtils.initBook(TEST_TITLE + 1, TEST_AUTHOR + 1, 1);
+		book2 = TestUtils.initBook(TEST_TITLE + 2, TEST_AUTHOR + 2, 2);
 	}
 
 	@Test
-	public void testGetBooks() {
-		basket.addBook(book1, 1);
-		basket.addBook(book2, 1);
+	public void testGetBooks() throws Exception {
+		final int quantity = 1;
+		basket.addBook(book1, quantity);
+		basket.addBook(book2, quantity);
 		Map<Book, Integer> books = basket.getBooks();
-		assertEquals(new Integer(1), books.get(book1));
-		assertEquals(new Integer(1), books.get(book2));
+		assertEquals(new Integer(quantity), books.get(book1));
+		assertEquals(new Integer(quantity), books.get(book2));
 	}
 
 	@Test
-	public void testAddBook() {
+	public void testAddBook() throws Exception {
 		Map<Book, Integer> books = basket.getBooks();
 		basket.addBook(book1, 1);
 		basket.addBook(book2, 2);
@@ -49,7 +45,7 @@ public class BasketTest {
 	}
 
 	@Test
-	public void testRemoveBook() {
+	public void testRemoveBook() throws Exception {
 		Map<Book, Integer> books = basket.getBooks();
 		basket.addBook(book1, 1);
 		basket.addBook(book2, 2);
@@ -62,7 +58,7 @@ public class BasketTest {
 	}
 
 	@Test
-	public void testGetPrice() {
+	public void testGetPrice() throws Exception {
 		basket.addBook(book1, 4);
 		assertEquals(new BigDecimal(4), basket.getPrice());
 		

@@ -9,6 +9,8 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.atorvdm.contribe.TestUtils;
+
 public class BookTest {
 	private static final String TITLE_1 = "Carrie";
 	private static final String TITLE_2 = "Den gröna milen";
@@ -20,17 +22,21 @@ public class BookTest {
 	public void setUp() throws Exception {
 		book = new Book();
 	}
+	
+	@Test
+	public void search() {
+		book = TestUtils.initBook(TITLE_2, STEPHEN_KING, PRICE);
+		assertTrue(book.search("gröna"));
+		assertTrue(book.search("STEPHEn "));
+		assertFalse(book.search(" den "));
+		assertFalse(book.search("grona"));
+	}
 
 	@Test
 	public void testHashCode() throws Exception {
 		Map<Book, Integer> books = new HashMap<>();
-		Book anotherBook = new Book();
-		book.setTitle(TITLE_1);
-		book.setAuthor(STEPHEN_KING);
-		book.setPrice(new BigDecimal(PRICE));
-		anotherBook.setTitle(TITLE_1);
-		anotherBook.setAuthor(STEPHEN_KING);
-		anotherBook.setPrice(new BigDecimal(PRICE));
+		book = TestUtils.initBook(TITLE_1, STEPHEN_KING, PRICE);
+		Book anotherBook = TestUtils.initBook(TITLE_1, STEPHEN_KING, PRICE);
 		books.put(book, 0);
 		books.put(anotherBook, 1);
 		
@@ -56,6 +62,5 @@ public class BookTest {
 		book.setTitle(TITLE_1);
 		anotherBook.setTitle(TITLE_2);
 		assertNotEquals(book, anotherBook);
-		setUp();
 	}
 }

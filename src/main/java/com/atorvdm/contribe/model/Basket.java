@@ -20,6 +20,7 @@ public class Basket implements Serializable {
 	}
 	
 	public void addBook(Book book, int quantity) {
+		if (quantity < 1) return;
 		if (books.containsKey(book)) {
 			books.put(book, books.get(book) + quantity);
 		} else {
@@ -28,6 +29,7 @@ public class Basket implements Serializable {
 	}
 	
 	public void removeBook(Book book, int quantity) {
+		if (quantity < 1) return;
 		if (!books.containsKey(book)) return;
 		if (quantity < books.get(book)) {
 			books.put(book, books.get(book) - quantity);
@@ -43,5 +45,9 @@ public class Basket implements Serializable {
 					.multiply(new BigDecimal(entry.getValue())));
 		}
 		return price;
+	}
+	
+	public void clear() {
+		books.clear();
 	}
 }
