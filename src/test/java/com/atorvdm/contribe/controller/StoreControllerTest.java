@@ -27,7 +27,7 @@ public class StoreControllerTest {
 	public void setUp() throws Exception {
 		book1 = TestUtils.initBook(TITLE_1, STEPHEN_KING, PRICE);
 		book2 = TestUtils.initBook(TITLE_2, STEPHEN_KING, PRICE + 1);
-		storeController = new StoreController();
+		storeController = new StoreController(true);
 	}
 
 	@Test

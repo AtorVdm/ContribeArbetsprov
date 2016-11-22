@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.atorvdm.contribe.model.Basket;
 import com.atorvdm.contribe.model.Book;
+import com.atorvdm.contribe.util.StoreUtils;
 
 @RestController
 @RequestMapping("/store")
@@ -23,12 +24,29 @@ public class StoreController implements BookList, BaseBasket {
 	private Map<Book, Integer> bookMap;
 	private Basket basket;
 	
-	public StoreController() {
+	public StoreController(boolean testing) {
 		super();
-		bookMap = new HashMap<>();
-		basket = new Basket();
+		init(testing);
 	}
 	
+	public StoreController() {
+		super();
+		init(false);
+	}
+	
+	private void init(boolean testing) {
+		// use LinkedHashMap if order matters or SortedMap if sorting is needed
+		bookMap = new HashMap<>();
+		basket = new Basket();
+		if (testing) return;
+		
+		try {
+			bookMap = StoreUtils.fetchBooksOnline();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	@RequestMapping(method = RequestMethod.GET, path = "/map")
 	public Map<Book, Integer> getMap() {
 		return bookMap;
