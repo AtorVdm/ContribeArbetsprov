@@ -2,6 +2,7 @@ package com.atorvdm.contribe.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -34,14 +35,17 @@ public class Book implements Serializable {
 	public boolean equals(Object obj) {
 		if (obj == null || !(obj instanceof Book)) return false;
 		Book book = (Book) obj;
-		return this.title.equals(book.title) && this.author.equals(book.author);
+		return Objects.equals(getTitle(), book.getTitle()) &&
+				Objects.equals(getAuthor(), book.getAuthor()) &&
+				Objects.equals(getPrice(), book.getPrice());
 	}
 	
 	@Override
     public int hashCode() {
         return new HashCodeBuilder(17, 31). // two randomly chosen prime numbers
-            append(title).
-            append(author).
+            append(getTitle()).
+            append(getAuthor()).
+            append(getPrice()).
             toHashCode();
     }
 }
