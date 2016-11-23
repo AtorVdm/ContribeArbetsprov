@@ -13,12 +13,25 @@ import org.apache.commons.io.IOUtils;
 
 import com.atorvdm.contribe.model.Book;
 
+/**
+ * This class contains util methods for the project
+ * @author Maksim Strutinskiy
+ */
 public class StoreUtils {
 	private final static String CSV_FILE_URL = "http://www.contribe.se/bookstoredata/bookstoredata.txt";
 	private final static String ENCODING = "UTF-8";
 	private final static String DATA_SET_DEL = "\n";
 	private final static String DATA_ELEMENT_DEL = ";";
 	
+	/**
+	 * This method fetches book list in csv format from the url (constant)
+	 * Throws a bunch of exceptions in case something is wrong
+	 * @return a list of books if everything is OK, exception otherwise
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 * @throws ParseException
+	 * @throws NumberFormatException
+	 */
 	public static Map<Book, Integer> fetchBooksOnline()
 			throws MalformedURLException, IOException, ParseException, NumberFormatException {
 		// use something like https://sourceforge.net/projects/csvjdbc/ if data persistence is required

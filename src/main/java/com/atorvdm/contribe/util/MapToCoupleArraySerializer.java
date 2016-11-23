@@ -9,6 +9,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
+/**
+ * This class can be used in @JsonSerialize(...) annotation to serialize a LinkedHashMap object
+ * @author Maksim Strutinskiy
+ */
 public class MapToCoupleArraySerializer extends JsonSerializer<LinkedHashMap<?, ?>>{
 
     @Override

@@ -6,6 +6,10 @@ import java.util.Objects;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+/**
+ * This class represents a book in the book store
+ * @author Maksim Strutinskiy
+ */
 public class Book implements Serializable {
 	private static final long serialVersionUID = 8123103198369491608L;
 	private String title;
@@ -31,6 +35,12 @@ public class Book implements Serializable {
 		this.price = price;
 	}
 	
+	/**
+	 * This method searches among titles authors in the store for occurrences
+	 * of an <code>input string</code>. The search is case-insensitive
+	 * @param searchString string to search for
+	 * @return true if string was found, false otherwise
+	 */
 	public boolean search(String searchString) {
 		String searchStringLC = searchString.toLowerCase();
 		return title.toLowerCase().contains(searchStringLC) ||

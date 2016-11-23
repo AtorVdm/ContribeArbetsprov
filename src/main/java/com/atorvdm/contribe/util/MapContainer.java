@@ -5,6 +5,12 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+/**
+ * This class is a wrapper for any kind of map. Can be used for serialization purposes.
+ * @author Maksim Strutinskiy
+ * @param <T> Type of the key
+ * @param <V> Type of the value
+ */
 public class MapContainer<T, V> implements Serializable {
 	private static final long serialVersionUID = 553648637879905186L;
 	private Map<T, V> map;

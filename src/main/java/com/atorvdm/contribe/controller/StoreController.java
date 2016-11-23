@@ -19,6 +19,11 @@ import com.atorvdm.contribe.model.Book;
 import com.atorvdm.contribe.util.MapContainer;
 import com.atorvdm.contribe.util.StoreUtils;
 
+/**
+ * This class is a main book store controller taking care of receiving requests
+ * and sending responds to the users
+ * @author Maksim Strutinskiy
+ */
 @RestController
 @RequestMapping("/store")
 public class StoreController implements BookList, BaseBasket {
