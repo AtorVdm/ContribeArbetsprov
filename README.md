@@ -58,14 +58,14 @@
 ## Request examples
 ### Browsing the store
 ```shell
-$ curl 'http://localhost:8080/store/list' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl 'http://localhost:8080/store/list' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
 # or
-$ curl 'http://localhost:8080/store/map' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl 'http://localhost:8080/store/map' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
 ### Adding a book to the store
 ```shell
-$ curl 'http://localhost:8080/store/add' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
+curl 'http://localhost:8080/store/add' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
     "title": "Generic Title",
     "author": "First Author",
     "price": 185.5
@@ -74,7 +74,7 @@ $ curl 'http://localhost:8080/store/add' -i -X POST -H 'Accept: application/json
 
 ### Buying books from the store
 ```shell
-$ curl 'http://localhost:8080/store/buy' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '[
+curl 'http://localhost:8080/store/buy' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '[
 	{
         "title": "Mastering åäö",
         "author": "Average Swede",
@@ -90,7 +90,7 @@ $ curl 'http://localhost:8080/store/buy' -i -X POST -H 'Accept: application/json
 
 ### Adding books to the basket
 ```shell
-$ curl 'http://localhost:8080/store/addToBasket?quantity=2' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
+curl 'http://localhost:8080/store/addToBasket?quantity=2' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
     "title": "Generic Title",
     "author": "First Author",
     "price": 185.5
@@ -99,7 +99,7 @@ $ curl 'http://localhost:8080/store/addToBasket?quantity=2' -i -X POST -H 'Accep
 
 ### Removing books from the basket
 ```shell
-$ curl 'http://localhost:8080/store/removeFromBasket?quantity=1' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
+curl 'http://localhost:8080/store/removeFromBasket?quantity=1' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
     "title": "Generic Title",
     "author": "First Author",
     "price": 185.5
@@ -108,12 +108,12 @@ $ curl 'http://localhost:8080/store/removeFromBasket?quantity=1' -i -X POST -H '
 
 ### Buying all books from the basket
 ```shell
-$ curl 'http://localhost:8080/store/buyFromBasket' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl 'http://localhost:8080/store/buyFromBasket' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
 ### Browsing the basket
 ```shell
-$ curl 'http://localhost:8080/store/basket' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl 'http://localhost:8080/store/basket' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
 [java8]:<http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html>
