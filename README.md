@@ -65,10 +65,10 @@ curl 'http://localhost:8080/store/map' -i -H 'Accept: application/json' -H 'Cont
 
 ### Adding a book to the store
 ```shell
-curl 'http://localhost:8080/store/add' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
-    "title": "Generic Title",
-    "author": "First Author",
-    "price": 185.5
+curl 'http://localhost:8080/store/add?quantity=5' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
+    "title": "New Title",
+    "author": "New Author",
+    "price": 200.55
 }'
 ```
 
