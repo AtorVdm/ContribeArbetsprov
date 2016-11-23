@@ -6,6 +6,12 @@
 * [Eclipse][eclipse]
 * [Spring Boot v1.4.2][springbootplugin]
 
+### Dependencies
+* [Spring Boot Web Starter][spring-boot]
+* [Spring Boot Test Starter][spring-boot-test]
+* [Apache Commons Lang][commons-lang]
+* [Apache Commons IO][commons-io]
+
 ### Running the project
 * mvn clean insall
 * run spring boot application starter using Spring Boot App configuration
@@ -50,7 +56,6 @@
 </pre>
 
 ## Request examples
-
 ### Browsing the store
 ```shell
 $ curl 'http://localhost:8080/store/list' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
@@ -115,3 +120,7 @@ $ curl 'http://localhost:8080/store/basket' -i -H 'Accept: application/json' -H 
 [tomcat]:<https://tomcat.apache.org/download-80.cgi>
 [eclipse]:<http://www.eclipse.org/downloads/>
 [springbootplugin]: <https://marketplace.eclipse.org/content/spring-tool-suite-sts-eclipse>
+[spring-boot]: <https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web>
+[spring-boot-test]: <https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test>
+[commons-lang]: <https://mvnrepository.com/artifact/commons-lang/commons-lang>
+[commons-io]: <https://mvnrepository.com/artifact/commons-io/commons-io>
