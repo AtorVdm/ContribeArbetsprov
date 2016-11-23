@@ -12,28 +12,28 @@
 
 ### File structure
 <pre>
-├── pom.xml															- application maven configuration file
+├── pom.xml                                                         - application maven configuration file
 ├── src
-│   ├── main														- application source files
+│   ├── main                                                        - application source files
 │   │   ├── java
 │   │   │   └── com
 │   │   │       └── atorvdm
 │   │   │           └── contribe
-│   │   │               ├── ContribeApplication.java				- spring boot application starter
+│   │   │               ├── ContribeApplication.java                - spring boot application starter
 │   │   │               ├── controller
-│   │   │               │   ├── BaseBasket.java						- an interface for a basic basket in the store
-│   │   │               │   ├── BookList.java						- an interface for a basic book list in the store
-│   │   │               │   └── StoreController.java				- main controller responsible for restful interraction
+│   │   │               │   ├── BaseBasket.java                     - an interface for a basic basket in the store
+│   │   │               │   ├── BookList.java                       - an interface for a basic book list in the store
+│   │   │               │   └── StoreController.java                - main controller responsible for restful interraction
 │   │   │               ├── model
-│   │   │               │   ├── Basket.java							- model of a basket in the store
-│   │   │               │   └── Book.java							- model of a book in the store
+│   │   │               │   ├── Basket.java                         - model of a basket in the store
+│   │   │               │   └── Book.java                           - model of a book in the store
 │   │   │               └── util
-│   │   │                   ├── MapContainer.java					- container for Map objects
-│   │   │                   ├── MapToCoupleArraySerializer.java		- class for Map serialization
-│   │   │                   └── StoreUtils.java						- class with methods-helpers
-│   │   └── resources												- applicattion resources
+│   │   │                   ├── MapContainer.java                   - container for Map objects
+│   │   │                   ├── MapToCoupleArraySerializer.java     - class for Map serialization
+│   │   │                   └── StoreUtils.java                     - class with methods-helpers
+│   │   └── resources                                               - applicattion resources
 │   │       ├── application.properties
-│   └── test														- application tests
+│   └── test                                                        - application tests
 │       └── java
 │           └── com
 │               └── atorvdm
@@ -50,6 +50,7 @@
 </pre>
 
 ## Request examples
+
 ### Browsing the store
 ```shell
 $ curl 'http://localhost:8080/store/list' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
