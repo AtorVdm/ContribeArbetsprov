@@ -1,8 +1,8 @@
 package com.atorvdm.contribe.controller;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.atorvdm.contribe.model.Basket;
 import com.atorvdm.contribe.model.Book;
+import com.atorvdm.contribe.util.MapContainer;
 import com.atorvdm.contribe.util.StoreUtils;
 
 @RestController
@@ -36,7 +37,7 @@ public class StoreController implements BookList, BaseBasket {
 	
 	private void init(boolean testing) {
 		// use LinkedHashMap if order matters or SortedMap if sorting is needed
-		bookMap = new HashMap<>();
+		bookMap = new LinkedHashMap<>();
 		basket = new Basket();
 		if (testing) return;
 		
@@ -46,9 +47,13 @@ public class StoreController implements BookList, BaseBasket {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@RequestMapping(method = RequestMethod.GET, path = "/map")
-	public Map<Book, Integer> getMap() {
+	public MapContainer<Book, Integer> getBookMapSerializable() {
+		return new MapContainer<Book, Integer>(getBookMap());
+	}
+	
+	public Map<Book, Integer> getBookMap() {
 		return bookMap;
 	}
 
@@ -102,6 +107,7 @@ public class StoreController implements BookList, BaseBasket {
 			basket.addBook(book, quantity);
 			return true;
 		} else {
+			
 			return false;
 		}
 	}
@@ -137,7 +143,7 @@ public class StoreController implements BookList, BaseBasket {
 	public Basket basketStatus() {
 		return basket;
 	}
-	
+
 	private int buyOneBook(Book book) {
 		if (!bookMap.containsKey(book))
 			return Status.DOES_NOT_EXIST.getValue();

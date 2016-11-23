@@ -6,15 +6,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.atorvdm.contribe.util.MapToCoupleArraySerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class Basket implements Serializable {
 	private static final long serialVersionUID = 981193818715595531L;
-	
 	private Map<Book, Integer> books;
 	
 	public Basket() {
 		books = new LinkedHashMap<>();
 	}
-
+	
+	@JsonSerialize(using = MapToCoupleArraySerializer.class)
 	public Map<Book, Integer> getBooks() {
 		return books;
 	}

@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Contribe</name>
+	<name>Book Store</name>
 	<description>Spring boot project</description>
 
 	<parent>
@@ -34,11 +34,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Using IOUtils.toString(...) is an efficient way to read data from URL -->
+		<!-- Scanner can be used instead of it -->
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
 		</dependency>
+		<!-- HashCodeBuilder seems like a really nice way to generate HashCode -->
+		<!-- Object.hash(...) can be used instead of it (starting from Java 7) -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>

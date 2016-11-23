@@ -53,8 +53,8 @@ public class StoreControllerTest {
 		storeController.add(book1, 1);
 		storeController.add(book2, 0);
 		storeController.add(book2, -10);
-		assertEquals(new Integer(6), storeController.getMap().get(book1));
-		assertEquals(new Integer(4), storeController.getMap().get(book2));
+		assertEquals(new Integer(6), storeController.getBookMap().get(book1));
+		assertEquals(new Integer(4), storeController.getBookMap().get(book2));
 	}
 
 	@Test

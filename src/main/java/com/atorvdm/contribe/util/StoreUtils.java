@@ -6,7 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
@@ -22,6 +22,7 @@ public class StoreUtils {
 	public static Map<Book, Integer> fetchBooksOnline()
 			throws MalformedURLException, IOException, ParseException, NumberFormatException {
 		// use something like https://sourceforge.net/projects/csvjdbc/ if data persistence is required
+		// uses Apache Commons IO
 		String[] input = IOUtils.toString(new URL(CSV_FILE_URL), ENCODING)
 				.split(DATA_SET_DEL);
 		
@@ -30,7 +31,7 @@ public class StoreUtils {
 	
 	private static Map<Book, Integer> parseInputStringArray(String[] input)
 			throws IOException, ParseException, NumberFormatException {
-		Map<Book, Integer> books = new HashMap<>();
+		Map<Book, Integer> books = new LinkedHashMap<>();
 		for (String line : input) {
 			String[] fields = line.split(DATA_ELEMENT_DEL);
 			if (!validateFields(fields))
@@ -38,8 +39,8 @@ public class StoreUtils {
 			
 			DecimalFormat df = new DecimalFormat();
 			df.setParseBigDecimal(true);
-			BigDecimal price = (BigDecimal) df.parse(fields[2]);
-			int quantity = Integer.parseUnsignedInt(fields[3]);;
+			BigDecimal price = new BigDecimal(fields[2].replaceAll(",", ""));
+			int quantity = Integer.parseUnsignedInt(fields[3]);
 			
 			Book book = new Book();
 			book.setTitle(fields[0]);

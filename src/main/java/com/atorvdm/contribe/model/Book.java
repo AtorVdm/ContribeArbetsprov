@@ -41,17 +41,28 @@ public class Book implements Serializable {
 	public boolean equals(Object obj) {
 		if (obj == null || !(obj instanceof Book)) return false;
 		Book book = (Book) obj;
+		
+		boolean priceEquals = false;
+		if (getPrice() == null && book.getPrice() == null) {
+			priceEquals = true;
+		} else if (getPrice() == null || book.getPrice() == null) {
+			priceEquals = false;
+		} else if (getPrice().compareTo(book.getPrice()) == 0) {
+			priceEquals = true;
+		}
+		
 		return Objects.equals(getTitle(), book.getTitle()) &&
 				Objects.equals(getAuthor(), book.getAuthor()) &&
-				Objects.equals(getPrice(), book.getPrice());
+				priceEquals;
 	}
 	
 	@Override
     public int hashCode() {
+		// uses Apache Commons Lang
         return new HashCodeBuilder(17, 31). // two randomly chosen prime numbers
             append(getTitle()).
             append(getAuthor()).
-            append(getPrice()).
+            append(getPrice().stripTrailingZeros()).
             toHashCode();
     }
 }
