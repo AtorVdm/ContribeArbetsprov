@@ -1,13 +1,12 @@
 # Book Store
 
-## Getting Started
-#### Requirements
+### Requirements
 * [Java 8][java8]
 * [Apache Tomcat v8][tomcat]
-* [Eclipse neon.1][atomeditor]
+* [Eclipse][eclipse]
 * [Spring Boot v1.4.2][springbootplugin]
 
-#### Running the project
+### Running the project
 * mvn clean insall
 * run spring boot application starter using Spring Boot App configuration
 
@@ -50,15 +49,15 @@
 └── target
 </pre>
 
-#### Request examples
-## Browsing the store
+## Request examples
+### Browsing the store
 ```shell
 $ curl 'http://localhost:8080/store/list' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
 # or
 $ curl 'http://localhost:8080/store/map' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
-## Adding a book to the store
+### Adding a book to the store
 ```shell
 $ curl 'http://localhost:8080/store/add' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
     "title": "Generic Title",
@@ -67,7 +66,7 @@ $ curl 'http://localhost:8080/store/add' -i -X POST -H 'Accept: application/json
 }'
 ```
 
-## Buying books from the store
+### Buying books from the store
 ```shell
 $ curl 'http://localhost:8080/store/buy' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '[
 	{
@@ -83,7 +82,7 @@ $ curl 'http://localhost:8080/store/buy' -i -X POST -H 'Accept: application/json
 ]'
 ```
 
-## Adding books to the basket
+### Adding books to the basket
 ```shell
 $ curl 'http://localhost:8080/store/addToBasket?quantity=2' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
     "title": "Generic Title",
@@ -92,7 +91,7 @@ $ curl 'http://localhost:8080/store/addToBasket?quantity=2' -i -X POST -H 'Accep
 }'
 ```
 
-## Removing books from the basket
+### Removing books from the basket
 ```shell
 $ curl 'http://localhost:8080/store/removeFromBasket?quantity=1' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' -d '{
     "title": "Generic Title",
@@ -101,12 +100,17 @@ $ curl 'http://localhost:8080/store/removeFromBasket?quantity=1' -i -X POST -H '
 }'
 ```
 
-## Buying all books from the basket
+### Buying all books from the basket
 ```shell
 $ curl 'http://localhost:8080/store/buyFromBasket' -i -X POST -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
-## Browsing the basket
+### Browsing the basket
 ```shell
 $ curl 'http://localhost:8080/store/basket' -i -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
+
+[java8]:<http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html>
+[tomcat]:<https://tomcat.apache.org/download-80.cgi>
+[eclipse]:<http://www.eclipse.org/downloads/>
+[springbootplugin]: <https://marketplace.eclipse.org/content/spring-tool-suite-sts-eclipse>
